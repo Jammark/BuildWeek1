@@ -1,4 +1,4 @@
-const questions = [
+var questions = [
     {
       category: "Science: Computers",
       type: "multiple",
@@ -98,8 +98,25 @@ const questions = [
     },
   ];
 
+
+  //hard medium easy
+
+  async function fetchJSONData(difficult) {
+    const response = await fetch(`https://opentdb.com/api.php?amount=10&category=18&difficulty=${difficult}`);
+    const jsonData = await response.json();
+    console.log(jsonData);
+    for(var i = 0; i < jsonData['results'].length; i++){
+      questions[i] = jsonData['results'][i];
+      console.table(questions[i]);
+    }
+    populateForm(count);
+       setupCounter();
+       startTimer();
+  }
+
 var count = 0;
 var result = 0;
+var difficulty = '';
 
   window.onload = () =>{
 
@@ -108,10 +125,13 @@ var result = 0;
     if(!ok){
       window.location = './index.html';
     }
+
+    difficulty = sessionStorage.getItem('difficulty');
+    fetchJSONData(difficulty);
        
-       populateForm(count);
-       setupCounter();
-       startTimer();
+    //   populateForm(count);
+    //   setupCounter();
+     //  startTimer();
 
        let btn = document.getElementById('btn1');
        btn.disabled = true;

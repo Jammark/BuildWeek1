@@ -17,8 +17,29 @@ window.onload = () => {
            
     }
     btn.onclick = () =>{
+        let radio = document.querySelector('input[type=\"radio\"]:checked');
         console.log("button click");
         sessionStorage.setItem('ok', 'true');
+        sessionStorage.setItem('difficulty', radio.getAttribute('value'));
         window.location = './page_quiz.html';
     };
+
+    let radios = document.querySelectorAll('input[type=\"radio\"]');
+    for(var i = 0; i < radios.length; i++){
+        radios[i].checked = i == 0;
+    }
+    var current;
+    radios.forEach(element => element.onchange = () => {
+      //  element.checked = !element.checked;
+        current = element.getAttribute('value');
+        for(var i = 0; i < radios.length; i++){
+            if(radios[i].getAttribute('value') == current){
+                continue;
+            }else{
+                radios[i].checked = false;
+            }
+            
+        }
+    });
 };
+
