@@ -149,7 +149,7 @@ var difficulty = '';
         return;
     }
     let title = document.getElementById('question');
-    title.innerText = questions[count].question;
+    title.innerHTML = questions[count].question;
     let form = document.querySelector('form > fieldset > div');
     let element = questions[index];
     let lista = [...element.incorrect_answers, element.correct_answer];
@@ -166,7 +166,7 @@ var difficulty = '';
         let lbl = document.createElement('label');
         lbl.setAttribute('for', 'radio'+i);
         lbl.classList = ['label'];
-        lbl.innerText = item;
+        lbl.innerHTML = item;
         form.appendChild(lbl);
         element.onclick = () =>{
                 let btn = document.getElementById('btn1');
@@ -252,8 +252,29 @@ var difficulty = '';
             console.log('correct answer.');
             console.log('counter: '+(count +1));
             result++;
+            showPopup('risposta corretta; risultato: ' + result +" su 10");
+            setTimeout(function() { 
+              closePopup();
+            }, 2000);
         }else{
             console.log('wrong answer.');
             console.log('counter: '+(count +1));
+            showPopup('risposta sbagliata; risultato: ' + result +" su 10");
+            setTimeout(function() { 
+              closePopup();
+            }, 2000);
         }
+  }
+
+
+  function showPopup(text){
+    let popup = document.getElementById('popup');
+    let title = document.querySelector('#popup > h3');
+    title.innerText = text;
+    popup.style.display = 'block';
+  }
+
+  function closePopup(){
+    let popup = document.getElementById('popup');
+    popup.style.display = 'none';
   }

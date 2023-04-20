@@ -517,3 +517,28 @@ input[type="radio"]:checked + label{
   .difficulty{
     margin: 15px 10px;
   }
+
+  #popup{
+    Width: 300px;
+	padding: 10px 20px;
+	Background: gray;
+	Box-sizing: border-box; /* for inside padding */
+	Padding: 10px;
+  border: 1px solid #c2128d;
+  background-color: #0c113b;
+  border-radius: 20%;
+
+	/* for center */
+	Position:absolute;
+	top:25%;
+	left:50%;
+	Transform: translate(-50%,-50%);
+
+	/* for hider */
+	display:none;
+  }
+
+  #popup > h3{
+    color: white;
+    font-size: 1.5rem;
+  }
